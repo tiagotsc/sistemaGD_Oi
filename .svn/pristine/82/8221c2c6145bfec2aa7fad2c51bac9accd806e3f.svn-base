@@ -1,0 +1,48 @@
+$.validator.addMethod('filesize', function (value, element, param) {
+	return this.optional(element) || (element.files[0].size <= param)
+}, 'Arquivo grande demais 40 MB');
+	
+$("#frm-dilatar").validate({
+	debug: false,
+	errorClass: 'error',
+	errorElement: 'p',
+	errorPlacement: function(error, element) {
+	  element.parents('.form-group').append(error);
+	  var msg = $(element).next('.help-block').text();
+	  $(element).attr('aria-label', msg );
+	},
+	highlight: function(element, errorClass){
+	  $(element)
+	  .attr('aria-invalid', true)
+	  .parents('.form-group')
+	  .addClass('has-error');
+	},
+	unhighlight: function(element, errorClass){
+	  $(element).removeAttr('aria-invalid')
+	  .removeAttr('aria-label')
+	  .parents('.form-group').removeClass('has-error');
+	},
+	rules: {
+		DATA_ATUAL: {
+			required: true
+		},
+		MOTIVO: {
+			required: true,
+		},
+	},
+	messages: {
+		DATA_ATUAL: {
+			required: "Informe a data"
+		},
+		MOTIVO: {
+			required: "Informe o motivo",
+		},
+	}
+});
+
+$("#salvar").on("click", function(){
+	if($("#frm-dilatar").valid()){
+		$("#salvar").prop('disabled', true).val('AGUARDE...');
+		$('#frm-dilatar').submit();
+	}
+});

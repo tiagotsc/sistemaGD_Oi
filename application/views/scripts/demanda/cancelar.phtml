@@ -1,0 +1,36 @@
+<form id="frm" method="post" action="<?= $_SERVER['SCRIPT_NAME'];?>/demanda/cancelarsalvar">
+	<div class="form-row">
+		<div class="form-group col-md-2">
+		  <label for="NUMERO_SGD">Número SGD</label>
+		  <input type="text" class="form-control" id="NUMERO_SGD" readonly value="<?=$this->valores['NUMERO_SGD']?>">
+		  <input type="hidden" id="DEMANDA_ID" name="DEMANDA_ID" value="<?=$this->ID?>" />
+		</div>
+		<div class="form-group col-md-3">
+		  <label for="TITULO">Título</label>
+		  <input type="text" class="form-control" readonly id="TITULO" value="<?=$this->valores['TITULO']?>">
+		</div>
+        <div class="form-group col-md-4">
+		  <label for="DEMANDANTE">Demandante</label>
+		  <input type="text" class="form-control" readonly id="DEMANDANTE" readonly value="<?=$this->valores['DEMANDANTE']?>">
+		</div>
+		<div class="form-group col-md-3">
+		  <label for="DOCUMENTO">Documento</label>
+		  <input type="text" class="form-control" readonly id="DOCUMENTO" value="<?=$this->valores['DOCUMENTO']?>">
+		</div>
+		<div class="form-group col-md-12">
+		  <label for="MOTIVO">Motivo</label>
+		  <textarea class="form-control" rows="5" id="MOTIVO" name="MOTIVO" maxlength="1000"></textarea>
+		</div>
+	</div>
+    <div class="form-row">
+		<div class="form-group col-md-12 text-right">
+			<input id="salvar" type="button" class="btn btn-primary" value="Salvar cancelamento" />
+		</div>
+	</div>
+</form>
+<script>
+	var url = "<?=ROOT_PATH?>/js/base.js";
+	$.getScript(url);
+	var url = "<?=ROOT_PATH?>/js/demanda/cancelar.js";
+	$.getScript(url);
+</script>

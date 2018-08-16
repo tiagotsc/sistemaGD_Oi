@@ -1,0 +1,54 @@
+.content {
+  padding: 1.0rem 1.4rem;
+}
+
+#ajaxLoading {
+	cursor: crosshair; 
+	color: #000000; 
+	z-index: 1000; 
+	text-align: center; 
+	width: 215px; 
+	height: 78px; 
+	position: fixed; 
+	top: 50%; 
+	left: 50%; 
+	margin-top: -39px; 
+	margin-left: -107px; 
+	background-color: #FFFFFF; 
+	border: 4px solid #cccccc; 
+	display: none; 
+	font-family: verdana; 
+	font-size: 11px
+}
+
+#ajaxLoadingFundo {
+	display: none; 
+	cursor: crosshair; 
+	background-color: #000000; 
+	display: none; 
+	width: 100%; 
+	height: 100%; 
+	z-index: 500; 
+	position: fixed; 
+	top: 0px; 
+	filter: alpha(opacity = 60); 
+	opacity: .20;
+}
+
+fieldset.scheduler-border {
+	margin-top: 10px;
+	margin-bottom: 20px;
+    border: 1px solid #ddd !important;
+    padding: 1em 1.4em 1.4em 1.4em !important;
+}
+
+legend.scheduler-border {
+    font-size: 1em !important;
+    text-align: left !important;
+    width:auto;
+    padding:0 0.4em;
+}
+
+div.ui-datepicker {
+	font-size: 11px;
+}

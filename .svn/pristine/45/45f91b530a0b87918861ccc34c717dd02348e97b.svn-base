@@ -1,0 +1,67 @@
+<link href="<?=ROOT_PATH?>/js/select2/css/select2.min.css" media="screen" rel="stylesheet" type="text/css" >
+<script type="text/javascript" src="<?=ROOT_PATH?>/js/select2/js/select2.min.js"></script>
+<link href="<?=ROOT_PATH?>/js/select2/css/select2_bootstrap.css" media="screen" rel="stylesheet" type="text/css" >
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Número SGD</th>
+			<th>Título</th>
+			<th>Prazo</th>
+			<th>Prazo considerado</th>
+			<th>Tipo de documento</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><?=$this->valores['NUMERO_SGD']?></td>
+			<td><?=$this->valores['TITULO']?></td>
+			<td><?=$this->valores['PRAZO']?></td>
+			<td><?=$this->valores['PRAZO_CONSIDERADO']?></td>
+			<td><?=$this->valores['DOCUMENTO']?></td>
+		</tr>
+	</tbody>
+</table>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Demandante</th>
+			<th>Descrição</th>
+			<th>Documento anexado</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><?=$this->valores['DEMANDANTE']?></td>
+			<td><?=nl2br($this->valores['DESCRICAO'])?></td>
+			<td>
+				<ul class="list-group">
+				<?php foreach($this->anexos as $anexo){ ?>
+					<li class="list-group-item"><a href="<?=$this->localfile.$anexo['CRIPTOGRAFIA'];?>" target="_blank"><?=$anexo['NOME']?></a></li>
+				<?php } ?>
+				</ul>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<form id="frm-delegar" method="post" action="<?= $_SERVER['SCRIPT_NAME'];?>/demanda/delegarsalvar" >
+	<div class="row">
+		<div class="form-group col-md-6">
+		  <label for="DEMANDADO">Demandado</label>
+		  <?php echo $this->formElementos->DEMANDADO; ?>
+		  <input type="hidden" id="NOME" name="NOME" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group col-md-12 text-right">
+			<input type="hidden" id="ID" name="ID" value="<?=$this->id?>"/>
+			<input type="hidden" id="redirect" name="redirect" value="<?=$this->redirect?>"/>
+			<input id="salvar" type="button" class="btn btn-primary" value="Delegar" />
+		</div>
+	</div>
+</form>
+</div>
+<!--<script type="text/javascript" src="<?=ROOT_PATH?>/js/demanda/delegar.js"></script>-->
+<script>
+	var url = "<?=ROOT_PATH?>/js/demanda/delegar.js";
+	$.getScript(url);
+</script>

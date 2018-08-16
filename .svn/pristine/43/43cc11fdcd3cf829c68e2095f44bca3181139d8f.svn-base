@@ -1,0 +1,52 @@
+$(document).ready(function(){
+	
+	// Cria combo autocomplete
+	$('#DEMANDADO').select2({
+	  //placeholder: 'Selecione uma opção',
+	  dropdownParent: $('#modalDefault')
+	}).on("select2:select", function(e) {// Change
+	//alert(e.params.data.id); // Id
+	$("#NOME").val(e.params.data.text);
+	$('#frm-delegar').valid()
+	});
+
+	$("#frm-delegar").validate({
+		debug: false,
+		errorClass: 'error',
+		errorElement: 'p',
+		errorPlacement: function(error, element) {
+		  element.parents('.form-group').append(error);
+		  var msg = $(element).next('.help-block').text();
+		  $(element).attr('aria-label', msg );
+		},
+		highlight: function(element, errorClass){
+		  $(element)
+		  .attr('aria-invalid', true)
+		  .parents('.form-group')
+		  .addClass('has-error');
+		},
+		unhighlight: function(element, errorClass){
+		  $(element).removeAttr('aria-invalid')
+		  .removeAttr('aria-label')
+		  .parents('.form-group').removeClass('has-error');
+		},
+		rules: {
+			DEMANDADO: {
+				required: true
+			}
+		},
+		messages: {
+			DEMANDADO: {
+				required: "Selecione o demandado"
+			}
+		}
+	});
+
+	$("#salvar").on("click", function(){
+			if($('#frm-delegar').valid()){
+				$("#frm-delegar").submit();
+				$("#salvar").prop('disabled', true).val('AGUARDE...');
+			}
+	});
+	
+});

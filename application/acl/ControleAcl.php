@@ -1,0 +1,63 @@
+<?
+class ControleAcl extends Zend_Acl {
+    
+	public function __construct($user) {
+	    
+        //recursos
+        $this->add(new Zend_Acl_Resource('index'));
+        $this->add(new Zend_Acl_Resource('error'));
+        $this->add(new Zend_Acl_Resource('documento'));
+        $this->add(new Zend_Acl_Resource('relatorios'));
+        $this->add(new Zend_Acl_Resource('configuracao'));
+		
+		$this->add(new Zend_Acl_Resource('demanda'));
+		$this->add(new Zend_Acl_Resource('classificacao'));
+        $this->add(new Zend_Acl_Resource('fatorgerador'));
+        $this->add(new Zend_Acl_Resource('tarefaagendada'));
+        $this->add(new Zend_Acl_Resource('debug'));
+        $this->add(new Zend_Acl_Resource('uf'));
+        
+        // regras
+        $this->addRole(new Zend_Acl_Role('1')); // Administrador
+        $this->addRole(new Zend_Acl_Role('6')); // Solicitante
+		$this->addRole(new Zend_Acl_Role('9')); // Equipe
+
+        // permissões       
+		$this->allow('1','index');
+        $this->allow('1','error');
+        $this->allow('1','documento');
+        $this->allow('1','relatorios');
+        $this->allow('1','configuracao');
+		$this->allow('1','demanda');
+		$this->allow('1','classificacao');
+        $this->allow('1','fatorgerador');
+        $this->allow('1','tarefaagendada');
+        $this->allow('1','debug');
+        $this->allow('1','uf');
+        
+        $this->allow('6','index');
+        $this->allow('6','error');
+        $this->allow('6','documento');
+        $this->allow('6','relatorios');
+        $this->allow('6','configuracao');
+		$this->allow('6','demanda');
+		$this->allow('6','classificacao');
+        $this->allow('6','fatorgerador');
+        $this->deny('6','tarefaagendada');
+        $this->allow('6','debug');
+        $this->allow('6','uf');
+		
+		$this->allow('9','index');
+        $this->allow('9','error');
+        $this->allow('9','documento');
+        $this->allow('9','relatorios');
+        $this->allow('9','configuracao');
+		$this->allow('9','demanda');
+		$this->allow('9','classificacao');
+        $this->allow('9','fatorgerador');
+        $this->deny('9','tarefaagendada');
+        $this->allow('9','debug');
+        $this->allow('9','uf');
+        
+    }
+}

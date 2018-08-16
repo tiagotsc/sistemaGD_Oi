@@ -1,0 +1,193 @@
+<?php 
+if($this->status != ''){ 
+$alerta = explode("|", $this->status);
+?>
+<div class="<?= $alerta[0] ?>" role="alert">
+	<?= $alerta[1] ?>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+</div>
+<?php } ?>
+<div class="modal" id="modalDemandaPesq" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-full" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Resultado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div id="modal_demanda_pesq_conteudo" class="modal-body p-4">
+				<table class="table table-modal-full" id="table_pesq" class="display">
+					<thead>
+						<tr>
+							<th>Opção</th>
+							<th>Número</th>
+							<th>Título</th>
+							<th>Demandante</th>
+							<th>Farol</th>
+							<th>Documento</th>
+							<th>Prazo cons.</th>
+							<th>Prazo</th>
+							<th>UF</th>
+							<th>Modalidade</th>
+							<th>Área</th>
+							<th>Email</th>
+							<th>Data Cadastro</th>
+							<th>Status</th>
+							<th>Descrição</th>
+							<th>Número SCT</th>
+							<th>Número SEI</th>
+							<th>Número PADO</th>
+							<th>Multa</th>
+							<th>Obice</th>
+							<th>Obice Descrição</th>
+							<th>Fisc. Pre. Onsite</th>
+							<th>Fisc. Req. Offsite</th>
+							<th>Classificação</th>
+							<th>Fator gerador</th>
+							<th>Observação</th>
+							<th>Região</th>
+							<th>Demandado</th>
+							<th>1ª Data Dilatação</th>
+							<th>Motivo da 1ª Data Dilatação</th>
+							<th>2ª Data Dilatação</th>
+							<th>Motivo da 2ª Data Dilatação</th>
+							<th>3ª Data Dilatação</th>
+							<th>Motivo da 3ª Data Dilatação</th>
+                            <th>Data Conclusão</th>
+						</tr>
+					</thead>
+				</table>                    
+            </div>
+            <!--<div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+            </div>-->
+        </div>
+    </div>
+</div>
+<div class="modal" id="modalTodos" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-full" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Resultado</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body p-4">
+		                   
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container container-pesq">
+	<form id="demanda-pesq" method="post">
+	<div class="row">
+		<div class="form-group col-md-2">
+		  <label for="NUMERO_SGD">Número SGD</label>
+		  <input type="text" class="form-control numero" id="NUMERO_SGD" name="NUMERO_SGD">
+		</div>
+		<div class="form-group col-md-2">
+		  <label for="NUMERO_SCT">Número SCT</label>
+		  <input type="text" class="form-control numero" id="NUMERO_SCT" name="NUMERO_SCT">
+		</div>
+		<div class="form-group col-md-2">
+		  <label for="NUMERO_SEI">Número SEI</label>
+		  <input type="text" class="form-control" id="NUMERO_SEI" name="NUMERO_SEI">
+		</div>
+		<div class="form-group col-md-4">
+		  <label for="DEMANDANTE">Demandante</label>
+		  <?php echo $this->formElementos->DEMANDANTE; ?>
+		</div>
+		<div class="form-group col-md-2">
+		  <label for="MODALIDADE_TIPO">Modalidade</label>
+		  <?php echo $this->formElementos->MODALIDADE_TIPO; ?>
+		</div>
+		<div class="form-group col-md-4">
+		  <label for="DIRETORIA">Diretoria</label>
+		  <?php echo $this->formElementos->DIRETORIA; ?>
+		</div>
+		<div class="form-group col-md-2">
+			<label for="DATA_CADASTRO_DT_INI">Data início</label>
+			<input type="text" class="form-control data data_mask" id="DATA_CADASTRO_DT_INI" name="DATA_CADASTRO_DT_INI" />
+		</div>
+		<div class="form-group col-md-2">
+			<label for="DATA_CADASTRO_DT_FIM">Data fim</label>
+			<input type="text" class="form-control data data_mask" id="DATA_CADASTRO_DT_FIM" name="DATA_CADASTRO_DT_FIM" />
+		</div>
+		<div class="form-group col-md-2">
+			<label for="PRAZO_CONSIDERADO_DT_INI">Prazo cons. início</label>
+			<input type="text" class="form-control data data_mask" id="PRAZO_CONSIDERADO_DT_INI" name="PRAZO_CONSIDERADO_DT_INI" />
+		</div>
+		<div class="form-group col-md-2">
+			<label for="PRAZO_CONSIDERADO_DT_FIM">Prazo cons. fim</label>
+			<input type="text" class="form-control data data_mask" id="PRAZO_CONSIDERADO_DT_FIM" name="PRAZO_CONSIDERADO_DT_FIM" />
+		</div>
+		<div class="form-group col-md-2">
+			<label for="DATA_CONCLUSAO_DT_INI">Data conc. início</label>
+			<input type="text" class="form-control data data_mask" id="DATA_CONCLUSAO_DT_INI" name="DATA_CONCLUSAO_DT_INI" />
+		</div>
+		<div class="form-group col-md-2">
+			<label for="DATA_CONCLUSAO_DT_FIM">Data conc. fim</label>
+			<input type="text" class="form-control data data_mask" id="DATA_CONCLUSAO_DT_FIM" name="DATA_CONCLUSAO_DT_FIM" />
+		</div>
+		<div class="form-group col-md-2">
+		  <label for="REGIAO_ID">Região</label>
+		  <?php echo $this->formElementos->REGIAO_ID; ?>
+		</div>
+		<div class="form-group col-md-2">
+		  <label for="UF">UF</label>
+		  <?php echo $this->formElementos->UF; ?>
+		</div>
+		<div class="form-group col-md-2">
+			<label for="DILACAO">Com dilação</label>
+				<select class="form-control" id="DILACAO" name="DILACAO">
+					<option value="N"></option>
+					<option value="S">Sim</option>
+				</select>
+		</div>
+		<div class="form-group col-md-2">
+			<label for="VENCIDA">Vencida</label>
+				<select class="form-control" id="VENCIDA" name="VENCIDA">
+					<option value=""></option>
+					<option value="S">Sim</option>
+					<option value="N">Não</option>
+				</select>
+		</div>
+		<div class="form-group col-md-8">
+		  <label for="CLASSIFICACAO_ID">Classificação</label>
+		  <?php echo $this->formElementos->CLASSIFICACAO_ID; ?>
+		</div>
+		<div class="form-group col-md-3">
+		  <label for="DOCUMENTO_TIPO_ID">Tipo documento</label>
+		  <?php echo $this->formElementos->DOCUMENTO_TIPO_ID; ?>
+		</div>
+		<div class="form-group col-md-3">
+		  <label for="STATUS_ID">Status</label>
+		  <?php echo $this->formElementos->STATUS_ID; ?>
+		</div>
+		<div class="form-group col-md-4">
+			<label for="DEMANDADO">Demandado</label>
+			<?php echo $this->formElementos->DEMANDADO; ?>
+		</div>
+	</div>
+	<div class="row">
+		<div id="divBtPesqDemanda" class="col-md-12 text-right">
+			<a href="#" class="btn btn-primary" id="pesq" data-toggle="modal">Pesquisar</a>
+		</div>
+	</div>
+	</form>
+</div>
+<!--<script type="text/javascript" src="<?=ROOT_PATH?>/js/demanda/pesq.js"></script>-->
+<script>
+//moment.locale('pt-BR');
+//alert(moment().format('MMMM Do YYYY, h:mm:ss a'));
+ 
+//alert(moment('2018-10-20').isBefore('<?php echo date('Y-m-d');?>'));
+	var url = "<?=ROOT_PATH?>/js/demanda/pesq.js";
+	$.getScript(url);
+</script>

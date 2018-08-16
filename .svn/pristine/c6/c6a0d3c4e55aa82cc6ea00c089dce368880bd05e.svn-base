@@ -1,0 +1,201 @@
+<!--<link href="<?=ROOT_PATH?>/css/visualizar_imprimir.css" media="screen" rel="stylesheet" type="text/css" >-->
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Número SGD</th>
+			<th>Data cadastro</th>
+			<th>Demandante</th>
+			<th>Área</th>
+			<th>Email</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><?=$this->valores['NUMERO_SGD']?></td>
+			<td><?=$this->valores['DATA_CADASTRO']?></td>
+			<td><?=$this->valores['DEMANDANTE']?></td>
+			<td><?=$this->valores['DIRETORIA']?></td>
+			<td><?=$this->valores['EMAIL']?></td>
+		</tr>
+	</tbody>
+</table>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Título</th>
+			<th>Status</th>
+			<th>Demandado</th>
+			<th>Documento</th>
+			<th>Multa</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><?=$this->valores['TITULO']?></td>
+			<td><?=$this->valores['STATUS']?></td>
+			<td><?=$this->valores['DEMANDADO']?></td>
+			<td><?=$this->valores['DOCUMENTO']?></td>
+			<td><?=($this->valores['MULTA'] == 'S')? 'Sim': 'Não'?></td>
+		</tr>
+	</tbody>
+</table>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Prazo</th>
+			<th>Prazo cons.</th>
+			<th>Região</th>
+			<th>UF</th>
+			<th>Número SEI</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><?=$this->valores['PRAZO']?></td>
+			<td><?=$this->valores['PRAZO_CONSIDERADO']?></td>
+			<td><?=$this->valores['REGIAO']?></td>
+			<td><?=$this->valores['UF']?></td>
+			<td><?=$this->valores['NUMERO_SEI']?></td>
+		</tr>
+	</tbody>
+</table>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Número SCT</th>
+			<th>Número PADO</th>
+			<th colpan="3">Classificação<span title="<?=$this->valores['CLASSIFICACAO_DESCRICAO']?>" id="info">?</span></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><?=$this->valores['NUMERO_SCT']?></td>
+			<td><?=$this->valores['NUMERO_PADO']?></td>
+			<td><?=$this->valores['CLASSIFICACAO']?></td>
+		</tr>
+	</tbody>
+</table>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+		<?php if($this->valores['DOCUMENTO_TIPO_ID'] == 7){ ?>
+			<th>Fisc. Pre. Onsite</th>
+			<th>Fisc. Req. Inf Offsite</th>
+		<?php } ?>
+			<th colspan="2">Modalidade</th>
+			<th>Óbice</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+		<?php if($this->valores['DOCUMENTO_TIPO_ID'] == 7){ ?>
+			<td><?=($this->valores['FISC_PRE_ONSITE'] == 'S')? 'Sim': 'Não'?></td>
+			<td><?=($this->valores['FISC_REQ_OFFSITE'] == 'S')? 'Sim': 'Não'?></td>
+		<?php } ?>
+			<td colspan="2"><?=$this->valores['MODALIDADE']?></td>
+			<td><?=($this->valores['OBICE'] == 'S')? 'Sim': 'Não'?></td>
+		</tr>
+	</tbody>
+</table>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Fator gerador</th>
+			<th>Descrição</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><?=$this->valores['FATOR_GERADOR']?></td>
+			<td><?=nl2br($this->valores['DESCRICAO'])?></td>
+		</tr>
+	</tbody>
+</table>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+		<?php if($this->valores['OBICE'] == 'S'){ ?>
+			<th>Óbice desc.</th>
+		<?php } ?>
+			<th>Observação</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+		<?php if($this->valores['OBICE'] == 'S'){ ?>
+			<td><?=nl2br($this->valores['OBICE_DESCRICAO'])?></td>
+		<?php } ?>
+			<td><?=nl2br($this->valores['OBSERVACAO'])?></td>
+		</tr>
+	</tbody>
+</table>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>1ª data dilação</th>
+			<th>2ª data dilação</th>
+			<th>3ª data dilação</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><?=$this->valores['DILATACAO_UM']?></td>
+			<td><?=$this->valores['DILATACAO_DOIS']?></td>
+			<td><?=$this->valores['DILATACAO_TRES']?></td>
+		</tr>
+        <tr>
+            <td><b>Motivo</b></td>
+            <td><b>Motivo</b></td>
+            <td><b>Motivo</b></td>
+        </tr>
+        <tr>
+            <td><?=$this->valores['MOTIVO_UM']?></td>
+            <td><?=$this->valores['MOTIVO_DOIS']?></td>
+            <td><?=$this->valores['MOTIVO_TRES']?></td>
+        </tr>
+	</tbody>
+</table>
+<?php if(in_array($_SESSION['Zend_Auth']['storage']['perfis'], array(PERFIL_ADM,PERFIL_EQU))){ ?>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th colspan="4">Histórico</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><b>Atividade<b></td>
+			<td><b>Motivo<b></td>
+			<td><b>Usuário</b></td>
+			<td><b>Data / Hora</b></td>
+		</tr>
+	<?php foreach($this->logDemanda as $log){ ?>
+		<tr>
+			<td><?=$log['ATIVIDADE']?></td>
+			<td><?=$log['MOTIVO']?></td>
+			<td><?=$log['USUARIO']?></td>
+			<td><?=$log['DATA']?></td>
+		</tr>
+	<?php } ?>
+	</tbody>
+</table>
+<?php } ?>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Documento anexado</th>
+		</tr>
+	</thead>
+	<tbody>
+	<?php foreach($this->anexos as $anexo){ ?>
+		<tr>
+			<!--<td><a target="_blank" href="file://<?=$this->localfile.$anexo['CRIPTOGRAFIA']?>"><?=$anexo['NOME']?></a></td>-->
+			<!--<td><a target="_blank" href="http://file:///C:/Oi/PHP/htdocs/doc/aplicacao/demanda/demanda_anexo/65_22_85ddea16d9b9460554a0b4b3912f9831.png"><?=$anexo['NOME']?></a></td>-->
+			<td>
+				<!--<a href="#" onClick="window.open('<?=$this->localfile.$anexo['CRIPTOGRAFIA'];?>', '_blank')"><?=$anexo['NOME']?></a>-->
+				<a href="<?=$this->localfile.$anexo['CRIPTOGRAFIA'];?>" target="_blank"><?=$anexo['NOME']?></a>
+			</td>
+		</tr>
+	<?php } ?>
+	</tbody>
+</table>

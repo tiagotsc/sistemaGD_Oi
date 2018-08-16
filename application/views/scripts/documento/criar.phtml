@@ -1,0 +1,70 @@
+<fieldset class="scheduler-border">
+	<legend class="scheduler-border">Bloco 1</legend>
+    <form>
+    	<div class="row">
+      		<div class="col">
+      			<?php echo $this->formDocumento->txtNome; ?>
+      			<i class="icon-time"></i>
+      		</div>
+      		<div class="col">
+      			<?php echo $this->formDocumento->slcUF; ?>
+      		</div>
+      		<div class="col">
+      			<?php echo $this->formDocumento->slcCidade; ?>
+      		</div>
+      		<div class="col">
+      			<?php echo $this->formDocumento->txtData1; ?>
+      		</div>
+      		<div class="col">
+      			<?php echo $this->formDocumento->txtData2; ?>
+    			<i class="icon-time"></i>
+    		</div>
+    	</div>
+    	<?php echo $this->formDocumento->salvar; ?>
+    </form>
+</fieldset>
+<fieldset class="scheduler-border">
+	<legend class="scheduler-border">Bloco 2</legend>
+	<div class="row">
+  		<div class="col">
+  			<div class="custom-file">
+                <input type="file" class="custom-file-input" id="inputGroupFile01">
+                <label class="custom-file-label" for="inputGroupFile01">Selecione</label>
+              </div>
+  		</div>
+	</div>
+	<br/>
+	<div class="row">
+  		<div class="col">
+  			<?php echo $this->formDocumento->txtDescricao; ?>
+  		</div>
+	</div>
+	<br/>
+	<div class="row">
+   		<div class="col">
+            <div class="form-check form-check-inline">
+              	<label class="form-check-label">
+                	<?php foreach ($this->letras as $let) { ?>
+                  	<label class="form-check-label">
+                    	<?php echo $this->formDocumento->rdoLetra->setValue($let); echo $let; ?>
+                  	</label>
+              		<?php } ?>
+              	</label>
+            </div>
+   		</div>
+   		<div class="col">
+            <div class="form-check form-check-inline">
+            	<?php foreach ($this->numeros as $num) { ?>
+                  	<label class="form-check-label">
+                    	<?php echo $this->formDocumento->chkNumero->setValue($num); echo $num; ?>
+                  	</label>
+              	<?php } ?>
+            </div>
+   		</div>
+   	</div>
+   	<br/>
+</fieldset>
+<script>
+	$("#datepicker").datepicker();
+	$(".radio").prop('type', 'radio');
+</script>

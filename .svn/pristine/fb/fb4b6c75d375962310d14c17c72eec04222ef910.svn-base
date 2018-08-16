@@ -1,0 +1,66 @@
+<link href="<?=ROOT_PATH?>/js/select2/css/select2.min.css" media="screen" rel="stylesheet" type="text/css" >
+<script type="text/javascript" src="<?=ROOT_PATH?>/js/select2/js/select2.min.js"></script>
+<link href="<?=ROOT_PATH?>/js/select2/css/select2_bootstrap.css" media="screen" rel="stylesheet" type="text/css" >
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Número SGD</th>
+			<th>Título</th>
+			<th>Documento</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><?=$this->valores['NUMERO_SGD']?></td>
+			<td><?=$this->valores['TITULO']?></td>
+			<td><?=$this->valores['DOCUMENTO']?></td>
+		</tr>
+	</tbody>
+</table>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Descrição</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><?=nl2br($this->valores['DESCRICAO'])?></td>
+		</tr>
+	</tbody>
+</table>
+<form id="frm" method="post" action="<?= $_SERVER['SCRIPT_NAME'];?>/demanda/reabrirsalvar">
+	<div id="arquivos" class="row">
+		<div class="form-group col-md-2">
+            <label for="PRAZO">Prazo</label>
+			<input type="text" class="form-control data data_mask" id="PRAZO" name="PRAZO" value="<?=$this->valores['PRAZO']?>" />
+		</div>
+        <?php foreach($this->dilatacoes as $dil) { ?>
+        <div class="form-group col-md-2">
+            <label for="dilacao[<?=$dil['ORDEM']?>]"><?=$dil['ORDEM']?>ª Dilação</label>
+			<input type="text" class="form-control data data_mask" id="dilacao[<?=$dil['ORDEM']?>]" name="dilacao[<?=$dil['ORDEM']?>]" value="<?=$dil['DATA_ATUAL']?>" />
+		</div>
+        <?php } ?>
+        <div class="form-group col-md-4">
+		  <label for="DEMANDADO">Demandado</label>
+		  <?php echo $this->formElementos->DEMANDADO; ?>
+		  <input type="hidden" id="NOME" name="NOME" value="<?=$this->valores['DEMANDADO']?>" />
+		</div>
+        <div class="form-group col-md-12">
+		  <label for="MOTIVO">Motivo</label>
+		  <textarea class="form-control" rows="5" id="MOTIVO" name="MOTIVO" maxlength="1000"></textarea>
+		</div>
+	</div>
+	<div class="row">
+		<div class="form-group col-md-12 text-right">
+			<input type="hidden" id="ID" name="ID" value="<?=$this->ID?>" />
+			<input id="salvar" type="button" class="btn btn-primary" value="Salvar" />
+		</div>
+	</div>
+</form>
+<script>
+    var url = "<?=ROOT_PATH?>/js/base.js";
+	$.getScript(url);
+	var url = "<?=ROOT_PATH?>/js/demanda/reabrir.js";
+	$.getScript(url);
+</script>

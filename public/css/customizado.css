@@ -1,0 +1,83 @@
+.error{
+	color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+	position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 0.2rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+	width: 100%;
+	display: block;
+}
+
+#info{
+	border: 1px solid #5F9EA0;
+	padding: 0px 5px;
+	border-radius: 10px;
+	margin-left: 3px;
+	background-color: #ADD8E6;
+	font-weight: bold;
+	cursor: help;
+}
+
+#buscarDemanda{
+	margin-left: 3px;
+}
+
+.iconMargem{
+	margin-left: 7px;
+}
+
+.container-pesq{
+	margin-bottom: 30px;
+}
+
+.modal-full {
+    min-width: 100%;
+    margin: 0;
+}
+#divBtPesqDemanda{
+	position:fixed; top: 90%; right: 9.5%;
+}
+
+.farol-verde{
+	color: green;
+}
+
+.farol-amarelo{
+	color: yellow;
+}
+
+.farol-laranja{
+	color: orange;
+}
+
+.farol-vermelho{
+	color: red;
+}
+
+.farol-roxo{
+	color: purple;
+}
+
+.farol-cinza{
+	color: gray;
+}
+
+#modal_demanda_pesq_conteudo { 
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+} 
+
+.batatableCarregando{
+	background-color: white;
+	height: 30px;
+}
+
+#ajaxLoading, #ajaxLoadingFundo{
+    z-index: 99999999999999;
+}
+
+

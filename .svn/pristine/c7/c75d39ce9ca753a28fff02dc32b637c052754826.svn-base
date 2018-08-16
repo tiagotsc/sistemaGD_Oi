@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<?php 
+        echo $this->headTitle(APPLICATION_TITLE); 
+        
+        echo $this->headMeta()->appendHttpEquiv('expires', 'Wed, 26 Feb 1997 08:21:57 GMT')
+                              ->appendHttpEquiv('pragma', 'no-cache')
+                              ->appendHttpEquiv('Cache-Control', 'no-cache')
+                              ->appendHttpEquiv('X-UA-Compatible', 'IE=edge,I11,I10');
+        
+        echo $this->headLink()->appendStylesheet('/aplicacao/'.APPLICATION_NAME.'/public/css/estilo.css')
+							  ->appendStylesheet('/aplicacao/'.APPLICATION_NAME.'/public/css/customizado.css')
+                              ->appendStylesheet('/aplicacao/'.APPLICATION_NAME.'/public/bootstrap/css/bootstrap.min.css')
+							  ->appendStylesheet('/aplicacao/'.APPLICATION_NAME.'/public/js/datatable/DataTables/datatables.min.css')
+							  ->appendStylesheet('/aplicacao/'.APPLICATION_NAME.'/public/js/datatable/css/buttons.dataTables.min.css')
+							  ->appendStylesheet('/aplicacao/'.APPLICATION_NAME.'/public/js/datatable/css/dataTables.checkboxes.css')
+							  ->appendStylesheet('/aplicacao/'.APPLICATION_NAME.'/public/js/datatable/css/select.dataTables.min.css')
+							  ->appendStylesheet('/aplicacao/'.APPLICATION_NAME.'/public/js/jquery-ui/jquery-ui.min.css')
+							  ->appendStylesheet('/aplicacao/'.APPLICATION_NAME.'/public/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css');
+        include_once("config_js.php");                    
+        echo $this->inlineScript()->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/jquery-3.3.1.min.js')
+                                  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/bootstrap/js/bootstrap.min.js')
+								  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/datatable/DataTables/datatables.min.js')
+								  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/datatable/js/date-uk.js')
+								  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/datatable/js/buttons.colVis.min.js')
+								  //->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/datatable/js/buttons.flash.min.js')
+								  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/datatable/js/buttons.html5.min.js')
+								  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/datatable/js/buttons.print.min.js')
+								  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/datatable/js/dataTables.buttons.min.js')
+								  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/datatable/js/dataTables.checkboxes.min.js')
+								  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/datatable/js/dataTables.select.min.js')
+								  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/datatable/js/jszip.min.js')
+								  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/datatable/js/pdfmake.min.js')
+								  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/datatable/js/vfs_fonts.js')
+                                  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/carregarAjax.js')
+								  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/jquery.validate.min.js')
+								  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/jquery.mask.js')
+								  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/util.js')
+								  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/config.js')
+								  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/base.js')
+								  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/jquery-ui/jquery-ui.min.js')
+                                  ->appendFile('/aplicacao/'.APPLICATION_NAME.'/public/js/moment-with-locales.min.js');
+                
+    ?>
+</head>
+<body>
+	<nav id="navegacao" class="navbar navbar-expand-sm bg-light navbar-light">
+		<div class="container" style="padding: 0 1.4rem;">
+		
+		<ul class="navbar-nav">
+			<li class="nav-item">
+          		<a id="btnIndex" href="#" class="nav-link" style="height: 40px; width: 200px;">
+          			<img style="float:left; width:30px; height:30px;" src="<?php echo ROOT_PATH; ?>/images/logo-oi.png">
+          			<h5 style="text-align: center; font-weight: 600; white-space: nowrap;"><?php echo APPLICATION_TITLE; ?></h5>
+          		</a>
+			</li>
+            <li class="nav-item dropdown">
+            	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Demanda</a>
+                <div class="dropdown-menu">
+					<?php if(in_array(PERFIL, array(PERFIL_ADM,PERFIL_SOL,PERFIL_EQU))){ ?>
+                	<a id="demandaPesq" class="dropdown-item menuItem" href="<?php echo ROOT_PATH; ?>/index.php/demanda/index">Pesquisar</a>
+                	<a id="demandaFicha" class="dropdown-item menuItem" href="<?php echo ROOT_PATH; ?>/index.php/demanda/ficha">Cadastrar</a>
+					<?php } ?>
+               	</div>
+          	</li>
+            <li class="nav-item dropdown">
+            	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Config</a>
+                <div class="dropdown-menu">
+					<?php if(in_array(PERFIL, array(PERFIL_ADM))){ ?>
+                	<a class="dropdown-item menuItem" href="<?php echo ROOT_PATH; ?>/index.php/fatorgerador/index">Fator gerador</a>
+                	<!--<a id="demandaFicha" class="dropdown-item menuItem" href="<?php echo ROOT_PATH; ?>/index.php/demanda/ficha">Cadastrar</a>-->
+					<?php } ?>
+               	</div>
+          	</li>
+			<!--
+            <li class="nav-item">
+              <a id="btnConsultar" href="#" class="nav-link">Consultar</a>
+            </li>
+            <li class="nav-item dropdown">
+            	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Relatorios</a>
+                <div class="dropdown-menu">
+                	<a id="btnRelatoriosQuantitativo" class="dropdown-item" href="#">Quantitativo</a>
+                	<a id="btnRelatoriosPercentual" class="dropdown-item" href="#">Percentual</a>
+                 	<div class="dropdown-divider"></div>
+                  	<a id="btnRelatoriosGraficos" class="dropdown-item" href="#">Graficos</a>
+               	</div>
+          	</li>
+            <li class="nav-item">
+              <a id="btnConfiguracao" class="nav-link" href="#">Configurar</a>
+            </li>
+			-->
+		</ul>
+		
+		</div>
+	</nav>
+	<!--
+    <div class="container">
+    	<div class="content">
+        	<div class="alert alert-info" role="alert">
+            	Mensagem informativa!
+            	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="alert alert-success" role="alert">
+            	Mensagem de sucesso!
+            	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="alert alert-danger" role="alert">
+            	Mensagem de erro!
+            	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+    	</div>
+    </div>
+	-->
+<div class="modal" id="modalDefault" tabindex="-1" role="dialog" aria-hidden="true">
+    <div id="modalFullDefault" class="modal-dialog modal-full" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="modal_titulo_default" class="modal-title">Aguarde...</h5>
+                <button type="button" id="modal_default_close" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div id="modal_conteudo_default" class="modal-body p-4">
+	                  
+            </div>
+            <!--<div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
+            </div>-->
+        </div>
+    </div>
+</div>
+    <div id="divMoldura" class="container">
+    	<div class="content">
+       		<?php echo $this->layout()->content; ?>
+       	</div>
+    </div>
+    
+    <div id="ajaxLoading">
+		<table id="tableLoading" style="margin-top: 16px">
+			<tr>
+				<td width="65"><img src="<?php echo ROOT_PATH; ?>/images/load.gif" align="middle" width="48px" height="48px" style="cursor: wait;" /></td>
+				<td><span>Carregando...</span></td>
+			</tr>
+		</table>
+	</div>
+	
+	<div id="ajaxLoadingFundo"></div>
+    
+    
+</body>
+<script type="text/javascript">
+
+$(document).ready(function(){
+/*	
+	$(".menuItem").click(function(){
+		showLoading();
+	});
+	
+	$(function() {
+		$(document).tooltip();
+	});
+	
+	$('.data_mask').mask('00/00/0000');
+	calendario(".data","");
+	
+	////////////////////////////////////////////////////
+	
+	$("#btnIndex").click(function() {
+		location.reload();
+	});
+	
+	$("#btnCriar").click(function() {
+		carregarAjax("index.php/documento/criar","Get", "#divMoldura");
+	});
+	
+	$("#btnConsultar").click(function() {
+		carregarAjax("index.php/documento/consultar","Get", "#divMoldura");
+	});
+	
+	$("#btnRelatoriosQuantitativo").click(function() {
+		carregarAjax("index.php/relatorios/quantitativo","Get", "#divMoldura");
+	});
+	
+	$("#btnRelatoriosPercentual").click(function() {
+		carregarAjax("index.php/relatorios/percentual","Get", "#divMoldura");
+	});
+	
+	$("#btnRelatoriosGraficos").click(function() {
+		carregarAjax("index.php/relatorios/graficos","Get", "#divMoldura");
+	});
+	
+	$("#btnConfiguracao").click(function() {
+		carregarAjax("index.php/configuracao/index","Get", "#divMoldura");
+	});
+*/	
+});
+
+</script>
+</html>

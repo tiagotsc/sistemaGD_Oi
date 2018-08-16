@@ -1,0 +1,26 @@
+<h1>teste</h1>
+
+<form id="frm-demanda" method="post" action="<?= $_SERVER['SCRIPT_NAME'];?>/demanda/testeform" enctype="multipart/form-data">
+<input type="text" id="nome" name="nome"/>
+<input type="button" id="enviar" value="Enviar"/>
+</form>
+
+<script type="text/javascript">
+ $('#enviar').click(function(e) {
+    e.preventDefault();
+    var nome = $('#nome').val();
+
+    $(".error").remove();
+	var status = 'ok';
+    if (nome.length < 1) {
+      $('#nome').after('<span class="error">Preencha o campo, por favor!</span>');
+	  status = 'erro';
+    }
+	
+	if(status == 'ok'){
+		$("#frm-demanda").submit();
+	}
+
+  });
+  
+</script>
